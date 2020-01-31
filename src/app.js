@@ -7,7 +7,7 @@ const app = express()
 const port = process.env.PORT || 4000
 const aimlParser = new AIMLParser({ name:'HelloBot' })
 
-aimlParser.load(['aiml.xml'])
+aimlParser.load(['./aiml.xml'])
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
