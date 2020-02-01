@@ -14,7 +14,7 @@ app.post('/webhook', (req, res) => {
 app.listen(port)
 async function reply(reply_token) {
     perf.start('apiCall')
-    await sleep(3000)
+    await sleep(10000)
     let headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer pGUvnj301pByYj93RZtj1pSVy1ROd82791zO1J677bjiJTnWoW2V9iZWdiTCd9FQ2v5NL0EE53+7KE5ZO4bYufglG1Uvu9xrOCqET6uLXYwAIqSyE5vU8zdtmc2e8YXs7kAoecME6juJFsBQox/fogdB04t89/1O/w1cDnyilFU='
@@ -38,7 +38,7 @@ async function reply(reply_token) {
         console.log('status = ' + res.statusCode)
     })
     const results = perf.stop('apiCall')
-    notify('Line  '+ results.time)
+    notify('Line Bot can not answer a question to the customer more than 10 second'+ results.time)
 }
 
 async function notify(text) {
