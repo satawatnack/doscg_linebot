@@ -9,6 +9,7 @@ app.use(bodyParser.json())
 app.post('/webhook', (req, res) => {
     let reply_token = req.body.events[0].replyToken
     reply(reply_token)
+    notify('Line Bot can not answer a question to the customer more than 10 second')
     res.sendStatus(200)
 })
 app.listen(port)
