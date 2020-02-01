@@ -38,7 +38,7 @@ async function reply(reply_token) {
         console.log('status = ' + res.statusCode)
     })
     const results = perf.stop('apiCall')
-    notify('Line Bot can not answer a question to the customer more than 10 second'+ results.time)
+    if(results > 10000) notify('Line Bot can not answer a question to the customer more than 10 second')
 }
 
 async function notify(text) {
