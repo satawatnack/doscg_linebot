@@ -6,9 +6,10 @@ const app = express()
 const port = process.env.PORT || 4000
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.post('/webhook', (req, res) => {
-    let reply_token = req.body.events[0].replyToken
-    reply(reply_token)
+app.post('/webhook', async (req, res) => {
+    const reply_token = req.body.events[0].replyToken
+    const timeCheck = await reply(reply_token)
+    if(timeCheck > 10000) notify('Line Bot can not answer a question to the customer more than 10 second')
     res.sendStatus(200)
 })
 app.listen(port)
@@ -38,7 +39,7 @@ async function reply(reply_token) {
         console.log('status = ' + res.statusCode)
     })
     const results = perf.stop('apiCall')
-    if(results.time > 10000) notify('Line Bot can not answer a question to the customer more than 10 second')
+    return results.time
 }
 
 async function notify(text) {
