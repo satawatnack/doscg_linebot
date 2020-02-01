@@ -38,7 +38,7 @@ async function reply(reply_token) {
         console.log('status = ' + res.statusCode)
     })
     const results = perf.stop('apiCall')
-    notify('Line ' + results.time)
+    notify('Line  '+ results.time)
 }
 
 async function notify(text) {
