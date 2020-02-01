@@ -11,11 +11,12 @@ app.post('/webhook', (req, res) => {
     perf.start('apiCall')
     reply(reply_token)
     const results = perf.stop('apiCall')
-    notify('boLine Bot can not answer a question to the customer more than 10 second' + results.time)
+    notify('Line Bot can not answer a question to the customer more than 10 second' + results.time)
     res.sendStatus(200)
 })
 app.listen(port)
 async function reply(reply_token) {
+    perf.start('Call')
     await sleep(3000)
     let headers = {
         'Content-Type': 'application/json',
@@ -39,6 +40,8 @@ async function reply(reply_token) {
     }, (err, res, body) => {
         console.log('status = ' + res.statusCode)
     })
+    const results = perf.stop('apiCall')
+    notify('Line ' + results.time)
 }
 
 async function notify(text) {
