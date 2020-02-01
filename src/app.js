@@ -11,7 +11,7 @@ app.post('/webhook', (req, res) => {
     perf.start('apiCall')
     reply(reply_token)
     const results = perf.stop('apiCall')
-    if(results>=3000) replyagain(reply_token)
+    if(results>=3) replyagain(reply_token)
     res.sendStatus(200)
 })
 app.listen(port)
