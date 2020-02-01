@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.post('/webhook', (req, res) => {
     let reply_token = req.body.events[0].replyToken
-    time_check = reply(reply_token)
+    const time_check = await reply(reply_token)
     notify('Line Bot ' + time_check)
     if (time_check>=10000) notify('Line Bot can not answer a question to the customer more than 10 second')
     res.sendStatus(200)
