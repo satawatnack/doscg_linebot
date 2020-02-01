@@ -11,7 +11,8 @@ app.post('/webhook', (req, res) => {
     res.sendStatus(200)
 })
 app.listen(port)
-function reply(reply_token) {
+async function reply(reply_token) {
+    await sleep(3000)
     let headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer pGUvnj301pByYj93RZtj1pSVy1ROd82791zO1J677bjiJTnWoW2V9iZWdiTCd9FQ2v5NL0EE53+7KE5ZO4bYufglG1Uvu9xrOCqET6uLXYwAIqSyE5vU8zdtmc2e8YXs7kAoecME6juJFsBQox/fogdB04t89/1O/w1cDnyilFU='
@@ -32,6 +33,10 @@ function reply(reply_token) {
         headers: headers,
         body: body
     }, (err, res, body) => {
-        console.log('status = ' + res.statusCode);
+        console.log('status = ' + res.statusCode)
     });
+}
+
+function sleep(millis) {
+    return new Promise(resolve => setTimeout(resolve, millis))
 }
