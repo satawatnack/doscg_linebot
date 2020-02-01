@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
+const perf = require('execution-time')()
 const app = express()
 const port = process.env.PORT || 4000
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -12,6 +13,7 @@ app.post('/webhook', (req, res) => {
 })
 app.listen(port)
 async function reply(reply_token) {
+    perf.start('apiCall')
     await sleep(3000)
     let headers = {
         'Content-Type': 'application/json',
@@ -34,7 +36,9 @@ async function reply(reply_token) {
         body: body
     }, (err, res, body) => {
         console.log('status = ' + res.statusCode)
-    });
+    })
+    const results = perf.stop('apiCall')
+    console.log(results.time)
 }
 
 function sleep(millis) {
