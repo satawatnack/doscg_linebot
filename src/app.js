@@ -18,7 +18,7 @@ async function reply(reply_token) {
     await sleep(10000)
     let headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer my_key'
+        'Authorization': 'Bearer pGUvnj301pByYj93RZtj1pSVy1ROd82791zO1J677bjiJTnWoW2V9iZWdiTCd9FQ2v5NL0EE53+7KE5ZO4bYufglG1Uvu9xrOCqET6uLXYwAIqSyE5vU8zdtmc2e8YXs7kAoecME6juJFsBQox/fogdB04t89/1O/w1cDnyilFU='
     }
     let body = JSON.stringify({
         replyToken: reply_token,
@@ -50,7 +50,7 @@ async function notify(text) {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         auth: {
-          bearer: 'my_key',
+          bearer: '1yA2Q9qVavFitiSrTRJYrTA0yv3h5xDRkBChHtOM3Ki',
         },
         form: {
           message: text,
